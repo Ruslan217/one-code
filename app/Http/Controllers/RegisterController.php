@@ -15,26 +15,28 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
 
-        $request = request()->has('number');
-        dd($request);
+//        if($name = $request->input('name')){
+//            $name = strtolower($name);
+//        }
+//        dd($name);
 
 
 
 //        return 'Sign Up Request';
 
-//        $validated = $request->validate([
-//            'name' => ['required', 'string', 'max:50'],
-//            'email' => ['required', 'string', 'max:50', 'email', 'unique:users'],
-//            'password' => ['required', 'string', 'min:7', 'max:50', 'confirmed'],
-//            'agreement' => ['accepted'],
-//        ]);
-//
-//        User::query()->create([
-//            'name' => $validated['name'],
-//            'email' => $validated['email'],
-//            'password' => bcrypt($validated['password']),
-//        ]);
-//
-//        return redirect()->route('user');
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:50'],
+            'email' => ['required', 'string', 'max:50', 'email', 'unique:users'],
+            'password' => ['required', 'string', 'min:7', 'max:50', 'confirmed'],
+            'agreement' => ['accepted'],
+        ]);
+
+        User::query()->create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => bcrypt($validated['password']),
+        ]);
+
+        return redirect()->route('user');
     }
 }

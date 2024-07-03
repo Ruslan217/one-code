@@ -13,22 +13,33 @@
         </x-slot>
     </x-title>
 
-    @if(empty($posts))
+    @if($posts->isEmpty())
         {{ __('Нет ни одного поста.') }}
     @else
-        @foreach($posts as $post)
-            <div class="mb-3">
-                <h2 class="h6">
-                    <a href="{{ route('user.posts.show', $post->id) }}">
-                        {{ $post->title }}
-                    </a>
-                </h2>
+        <form action="{{ route('user.posts.delete') }}" method="POST" onsubmit="return confirm('{{ __('Вы уверены, что хотите удалить выбранные посты?') }}');">
+            @csrf
+            @method('DELETE')
 
-                <div class="small text-muted">
-                    {{ $post->published_at?->format('d.m.Y H:i:s') }}
+            @foreach($posts as $post)
+                <div class="mb-3 d-flex align-items-center">
+                    <input type="checkbox" name="posts[]" value="{{ $post->id }}" class="mr-2">
+                    <div>
+                        <h2 class="h6 mb-1">
+                            <a href="{{ route('user.posts.show', $post->id) }}">
+                                {{ $post->title }}
+                            </a>
+                        </h2>
+                        <div class="small text-muted">
+                            {{ $post->published_at?->format('d.m.Y H:i:s') }}
+                        </div>
+                    </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+
+            <button type="submit" class="btn btn-danger">
+                {{ __('Удалить выбранные') }}
+            </button>
+        </form>
 
         {{ $posts->links() }}
     @endif

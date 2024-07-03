@@ -11,6 +11,10 @@ class BlogController extends Controller
 {
     public function index(Request $request)
     {
+
+//        $all = request()->all();
+//        dd($all);
+
         $validated = $request->validate([
             'search' => ['nullable', 'string', 'max:50'],
             'from_date' => ['nullable', 'string', 'date'],

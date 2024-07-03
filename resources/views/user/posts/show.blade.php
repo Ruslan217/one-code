@@ -17,6 +17,12 @@
                 {{ __('Изменить') }}
             </x-button-link>
         </x-slot>
+
+        <form action="{{ route('user.posts.delete', $post) }}" method="POST" onsubmit="return confirm('{{ __('Are you sure you want to delete this post?') }}');">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">{{ __('Delete') }}</button>
+        </form>
     </x-title>
 
     <h2 class="h4">

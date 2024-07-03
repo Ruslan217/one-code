@@ -25,6 +25,8 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+
+
         $validated = validate($request->all(), Post::$rules);
 
         $post = (new Post)->fillAttributes($validated);
@@ -57,8 +59,13 @@ class PostController extends Controller
         return back();
     }
 
-    public function delete($post)
+    public function delete(Request $request)
     {
+        $postIds = $request->input('posts');
+        Post::whereIn('id', $postIds)->delete();
+
+        alert(__('Удалено!'));
+
         return redirect()->route('user.posts');
     }
 }
