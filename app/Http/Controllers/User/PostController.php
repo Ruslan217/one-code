@@ -35,7 +35,7 @@ class PostController extends Controller
 
         alert(__('Сохранено!'));
 
-        return redirect()->route('user.posts.show', $post);
+        return redirect()->route('user.posts');
     }
 
     public function show(Post $post)

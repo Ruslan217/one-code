@@ -47,7 +47,7 @@ class Post extends Model
             'title' => $attributes['title'],
             'content' => $attributes['content'],
             'published_at' => new Carbon($attributes['published_at']) ?? null,
-            'published' => $attributes['published'] ?? false,
+            'published'  => $attributes['published'] ?? false,
         ]);
     }
 }

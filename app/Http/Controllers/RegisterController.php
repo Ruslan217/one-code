@@ -36,7 +36,7 @@ class RegisterController extends Controller
             'email' => $validated['email'],
             'password' => bcrypt($validated['password']),
         ]);
-
-        return redirect()->route('user');
+        dd($validated);
+//        return redirect()->route('user');
     }
 }

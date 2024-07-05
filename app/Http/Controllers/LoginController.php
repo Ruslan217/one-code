@@ -11,7 +11,8 @@ class  LoginController extends Controller
         // dd(session()->all());
         // $foo = session('foo');
         // dd($foo);
-
+//        $ip = request()->ip();
+//        dd($ip);
         return view('login.index');
     }
 
@@ -21,9 +22,9 @@ class  LoginController extends Controller
 
         alert(__('Добро пожаловать!'));
 
-        // if (true) {
-            // return redirect()->back()->withInput();
-        // }
+         if (true) {
+             return redirect()->back()->withInput();
+         }
 
         return redirect()->route('user');
     }
